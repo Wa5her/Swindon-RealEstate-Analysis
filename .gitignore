@@ -1,0 +1,24 @@
+# Ignore all CSV files
+*.csv
+*.mat
+*.mlx
+*.xlsx
+
+# Ignore image files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.svg
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Ignore specific folders
+wiltshire crimedb/
+swindon/ 
