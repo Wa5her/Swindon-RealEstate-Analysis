@@ -8,7 +8,7 @@ import json
 # --- Configuration ---
 # Set the path to your project folder.
 # NOTE: The path from your MATLAB script has been used. Update if needed.
-FOLDER_PATH = r'E:\Eshwar\Projects\Realestate\swindon'
+FOLDER_PATH = r'E:\Eshwar\Projects\Swindon-RealEstate-Analysis\swindon'
 FILE_PATTERN = os.path.join(FOLDER_PATH, '*buy.csv')
 POSTCODE_JSON_PATH = os.path.join(FOLDER_PATH, 'outcode mappings.json')
 
@@ -84,24 +84,22 @@ for i, file_path in enumerate(csv_files):
     else:
         print("  -> No 4-bedroom properties found in this file. Skipping histogram.")
 
-
-    # --- Commented-out Plot (Translated from MATLAB) ---
-    # This section corresponds to the commented-out box plot in your .m file.
-    # It shows price variation by postcode.
-    #
-    # fig_box_pc = px.box(
-    #     sn_home, 
-    #     x='PostCode', 
-    #     y='kGBP', 
-    #     points='all',  # Equivalent to scatter overlay
-    #     color='number_bedrooms', # Color points by number of bedrooms
-    #     title="Post Code Variation",
-    #     labels={'kGBP': 'Price (£k)', 'PostCode': 'Postcode'}
-    # )
-    # fig_box_pc.update_layout(yaxis_range=[0, 500])
-    # # output_filepath_pc = os.path.join(FOLDER_PATH, f"2-{file_name[:10]}.png")
-    # # fig_box_pc.write_image(output_filepath_pc)
-    # fig_box_pc.show()
+    #It shows price variation by postcode.
+    
+    fig_box_pc = px.box(
+        sn_home, 
+        x='PostCode', 
+        y='kGBP', 
+        points='all',  # Equivalent to scatter overlay
+        color='number_bedrooms', # Color points by number of bedrooms
+        title="Post Code Variation",
+        labels={'kGBP': 'Price (£k)', 'PostCode': 'Postcode'}
+    )
+    fig_box_pc.update_layout(yaxis_range=[0, 500])
+    output_filepath_pc = os.path.join(FOLDER_PATH, f"2-{file_name[:10]}.png")
+    # Increase resolution by setting scale (e.g., 3x default)
+    fig_box_pc.write_image(output_filepath_pc, scale=3)
+    #fig_box_pc.show()
 
 
 print("\nLoop finished. Generating final plot from the last processed file.")
